@@ -1,30 +1,68 @@
-# React + TypeScript + Vite
+# Guestbook Tech Test for React job role
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project was built utilizing Vite react template using Typescript. The project is a simple guestbook application that allows users to add and delete guestbook entries. The project is built using React, Typescript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+Plugins used in the project:
+- react-router-dom
+- react-hook-form
+- react-bootstrap UI components
+- Firebase for backend (Authentication and Firestore), also storage for image upload
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To install the project, clone the repository and run the following commands:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Running the project
+
+To run the project, run the following command:
+
+```bash
+npm run dev
+```
+
+## Building the project
+
+To build the project, run the following command:
+
+```bash
+npm run build
+```
+
+# Project wiki
+
+To use the project, follow the steps below:
+
+1. Register a new account or login with an existing account. (Authentication is handled by Firebase using either Google or Email/Password)
+2. Once logged in, you will be redirected to the guestbook page where you can view all guestbook entries.
+3. To add a new guestbook entry, click on the "Add Entry" button on the top right corner of the page.
+4. Fill in the form with your name, message, and upload an image (optional).
+5. Click on the "Submit" button to add the entry to the guestbook.
+
+### admin user
+
+To access the admin page, an admin user is required. The admin user can delete guestbook entries.
+
+To create an admin user, you can use the Firebase console to update the user's role to "admin".
+
+To access the admin page, click on the "Admin" button on the top right corner of the page.
+
+### Guestbook entry
+
+Each guestbook entry contains the following information:
+- Name: The name of the user who added the entry.
+- Message: The message added by the user.
+- Image: An image uploaded by the user (optional).
+- Date: The date and time the entry was added.
+
+### Admin page
+
+The admin page contains a list of all guestbook entries. The admin user can delete entries by clicking on the "Delete" button next to each entry.
+
+### Logout
+
+To logout, click on the "Logout" button on the top right corner of the page.
