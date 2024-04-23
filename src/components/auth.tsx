@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { auth, googleProvider } from '../config/Firebase'
-import { signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
+import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import Button from '@mui/material/Button'
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
@@ -9,6 +9,16 @@ const Auth = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = React.useState(false);
+    const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          setCurrentUser(user);
+        });
+
+        // Cleanup subscription on unmount
+        return () => unsubscribe();
+      }, []);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -44,8 +54,8 @@ const Auth = () => {
     }
 
     return (
-        <div className='flex flex-col gap-2'>
-            <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <div className='flex flex-col justify-center align-middle items-center gap-2'>
+            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password" size='small'>Email</InputLabel>
                 <OutlinedInput
                     id="outlined-adornment-email"
@@ -54,7 +64,7 @@ const Auth = () => {
                     label="Email"
                 />
             </FormControl>
-            <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password" size='small'>Password</InputLabel>
                 <OutlinedInput
                     id="outlined-adornment-password"
@@ -77,11 +87,16 @@ const Auth = () => {
                     label="Password"
                 />
             </FormControl>
-            <Button onClick={login}>Login</Button>
+            <div>
+            <Button variant='contained' sx={{ width: '35ch'}} onClick={login}>Login</Button>
 
-            <Button onClick={signInWithGoogle}>Sign in with Google</Button>
+            <div>Or</div>
 
-            <Button variant='contained' onClick={Logout}>Logout</Button>
+            <Button variant='contained' sx={{ width: '35ch'}} onClick={signInWithGoogle}>Sign in with Google</Button>
+            </div>
+            {currentUser && (
+        <Button variant='contained' sx={{ width: '35ch'}} onClick={Logout}>Logout</Button>
+      )}
         </div>
     )
 }
