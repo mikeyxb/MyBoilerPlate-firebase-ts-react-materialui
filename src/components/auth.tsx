@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { auth, googleProvider } from '../config/Firebase'
 import { signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import Button from '@mui/material/Button'
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 const Auth = () => {
