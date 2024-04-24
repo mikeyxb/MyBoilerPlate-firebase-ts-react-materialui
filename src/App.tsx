@@ -9,16 +9,27 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import gardenBG from './assets/gardenBG.jpg'
+import ReviewsPage from './Routes/ReviewsPage'
+import AddReview from './Routes/AddReview'
 
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Protected><Home /></Protected>,
+      element: <Home />,
     },
     {
       path: '/home',
-      element: <Protected><Home /></Protected>,
+      element: <Home />,
+    },
+    {
+      path: '/reviews',
+      element: <Protected><ReviewsPage /></Protected>,
+    },
+    {
+      path: '/add',
+      element: <Protected><AddReview /></Protected>,
     },
     {
       path: '/signin',
@@ -32,7 +43,7 @@ function App() {
 
   return (
     <AuthContext>
-      <div className="flex w-full flex-col align-middle ">
+      <div className="flex w-full flex-col align-middle">
         <RouterProvider router={router} />
       </div>
     </AuthContext>

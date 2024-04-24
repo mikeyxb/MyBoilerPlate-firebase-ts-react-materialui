@@ -49,7 +49,7 @@ const SignUp = () => {
 
     return (
         <div className='flex flex-col w-full h-screen justify-center align-middle items-center'>
-            <div className='flex flex-col justify-center w-fit align-middle items-center gap-2 border rounded-2xl shadow-2xl p-20'>
+            <div className='flex flex-col justify-center w-fit align-middle items-center gap-2 border rounded-2xl shadow-xl shadow-black bg-white p-20'>
                 <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password" size='small'>Email</InputLabel>
                     <OutlinedInput
