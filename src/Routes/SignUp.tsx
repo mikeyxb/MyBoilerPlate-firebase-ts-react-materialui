@@ -48,46 +48,48 @@ const SignUp = () => {
     }
 
     return (
-        <div className='flex flex-col justify-center align-middle items-center gap-2 border rounded-2xl shadow-2xl p-20'>
-            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password" size='small'>Email</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    size='small'
-                    label="Email"
-                />
-            </FormControl>
-            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password" size='small'>Password</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={showPassword ? 'text' : 'password'}
-                    onChange={(e) => setPassword(e.target.value)}
-                    size='small'
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
+        <div className='flex flex-col w-full h-screen justify-center align-middle items-center'>
+            <div className='flex flex-col justify-center w-fit align-middle items-center gap-2 border rounded-2xl shadow-2xl p-20'>
+                <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password" size='small'>Email</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        size='small'
+                        label="Email"
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password" size='small'>Password</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        onChange={(e) => setPassword(e.target.value)}
+                        size='small'
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
 
-                                edge="end"
-                            >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    label="Password"
-                />
-            </FormControl>
-            <div>
-                <Button variant='contained' sx={{ width: '35ch' }} onClick={login}>Sign Up</Button>
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                    />
+                </FormControl>
+                <div>
+                    <Button variant='contained' sx={{ width: '35ch' }} onClick={login}>Sign Up</Button>
+                </div>
+                {currentUser && (
+                    <Button variant='contained' sx={{ width: '35ch' }} onClick={Logout}>Logout</Button>
+                )}
+                <Link to="/">Back</Link>
             </div>
-            {currentUser && (
-                <Button variant='contained' sx={{ width: '35ch' }} onClick={Logout}>Logout</Button>
-            )}
-            <Link to="/">Back</Link>
         </div>
     )
 }

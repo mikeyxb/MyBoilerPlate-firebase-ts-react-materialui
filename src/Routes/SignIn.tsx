@@ -6,6 +6,8 @@ import { Alert, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInp
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Link, useNavigate } from 'react-router-dom'
 import { Context } from '../context/AuthContext'
+import googleLogo from '../assets/googleLogo.svg'
+
 
 const SignIn = () => {
     const [email, setEmail] = useState('')
@@ -62,65 +64,62 @@ const SignIn = () => {
 
 
     return (
-        <div className='flex flex-col justify-center align-middle items-center gap-2'>
-            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password" size='small'>Email</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    size='small'
-                    label="Email"
-                />
-            </FormControl>
-            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password" size='small'>Password</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={showPassword ? 'text' : 'password'}
-                    onChange={(e) => setPassword(e.target.value)}
-                    size='small'
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
+        <div className='flex flex-col w-full h-screen justify-center align-middle items-center'>
+            <div className='flex flex-col justify-center w-fit align-middle items-center gap-2 border rounded-2xl shadow-2xl p-20'>
+                <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password" size='small'>Email</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        size='small'
+                        label="Email"
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password" size='small'>Password</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        onChange={(e) => setPassword(e.target.value)}
+                        size='small'
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
 
-                                edge="end"
-                            >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    label="Password"
-                />
-            </FormControl>
-            <div>
-                <Button variant='contained' sx={{ width: '35ch' }} onClick={login}>Login</Button>
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                    />
+                </FormControl>
+                <div>
+                    <Button variant='contained' sx={{ width: '35ch' }} onClick={login}>Login</Button>
 
-                <div>Or</div>
+                    <div className='flex justify-center'>Or</div>
 
-                <Button variant='contained' sx={{ width: '35ch' }} onClick={signInWithGoogle}>Sign in with Google</Button>
+                    <Button variant='outlined' sx={{ width: '35ch' }} onClick={signInWithGoogle}>
+                        <img src={googleLogo} alt="Google logo" className='w-[35px]' />
+                        Sign in with Google
+                    </Button>
+                </div>
+                <div>Not got an account <Link to="/signup">Sign Up</Link></div>
+                <Snackbar open={snackbarOpen} autoHideDuration={9000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+                    <Alert
+                        onClose={handleClose}
+                        severity="success"
+                        variant="filled"
+                        sx={{ width: '100%' }}
+                    >
+                        Logged out successfully!
+                    </Alert>
+                </Snackbar>
             </div>
-            <div>Not got an account <Link to="/signup">Sign Up</Link></div>
-            {/* <Snackbar
-                open={snackbarOpen}
-                autoHideDuration={5000}
-                severity="success"
-                onClose={handleClose}
-                message="Logged out successfully!"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            /> */}
-            <Snackbar open={snackbarOpen} autoHideDuration={9000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
-                <Alert
-                    onClose={handleClose}
-                    severity="success"
-                    variant="filled"
-                    sx={{ width: '100%' }}
-                >
-                    Logged out successfully!
-                </Alert>
-            </Snackbar>
         </div>
     )
 }
