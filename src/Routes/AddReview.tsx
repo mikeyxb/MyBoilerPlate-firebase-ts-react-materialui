@@ -18,7 +18,8 @@ const AddReview = () => {
                 guest: name,
                 review: review,
                 posted: serverTimestamp(),
-                stars: stars
+                stars: stars,
+                approved: false
             })
             console.log(name, review)
             handleClick();
