@@ -61,18 +61,18 @@ function ReviewsPage() {
     };
 
     return (
-        <div className='flex flex-row bg-white m-10 justify-evenly rounded-2xl p-6 shadow-xl shadow-black gap-5 flex-wrap '>
+        <div className='flex flex-row bg-white m-10 justify-center rounded-2xl p-6 shadow-xl shadow-black gap-5 flex-wrap '>
             {reviews.map((review) => (
                 // Only display the review if it's approved or the user is an admin
                 (review.approved || isAdmin) && (
-                    <fieldset key={review.id} className='flex  flex-col justify-evenly items-center text-left w-fit max-w-[35%] min-w-[30%] p-10 border-green-600 border rounded-md'>
+                    <fieldset key={review.id} className='flex  flex-col justify-start items-center text-left w-fit max-w-[45%] min-w-[40%] p-10 border-green-600 border rounded-md'>
                         <legend className='flex items-center justify-center m-auto text-xl font-RobotoBold text-center w-3/4'>{review.guest}</legend>
                         <Typography component="legend">Rating</Typography>
                         <Rating name="read-only" value={review.stars || 0} readOnly />
                         <p>{review.stars}</p>
                         <p>{review.review}</p>
                         <div className='flex w-full justify-end text-[10px] text-right'>{review.posted}</div>
-                        <div className='flex gap-5 m-5 justify-between items-start'>
+                        <div className='flex gap-5 m-5 justify-evenly items-start'>
                             {isAdmin && (
                                 <div className='flex flex-col gap-4'>
                                     <Button variant="outlined" color='error' onClick={() => deleteReview(review.id)}>Delete</Button>{''}
